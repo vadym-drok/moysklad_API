@@ -50,7 +50,7 @@ def orderApi(request, id=0):
     if request.method=='POST':
         orders_data = JSONParser().parse(request)
         post_or_get(orders_data)
-        return JsonResponse("POST Successfully", safe=False)
+        return JsonResponse("POST method", safe=False)
 
     elif request.method=='GET':
         json_data = get_data()
@@ -62,4 +62,4 @@ def orderApi(request, id=0):
                     }
             post_or_get(orders_data)
             
-        return JsonResponse("GET Successfully", safe=False)
+        return JsonResponse("GET method", safe=False)
