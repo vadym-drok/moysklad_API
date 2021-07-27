@@ -36,14 +36,15 @@ def get_data():
 def orderApi(request, id=0):
 
     def post_or_get(orders_data):
-        # if the data is in the db: Update it / if not:  write data in db
-        try:
-            orders = Order.objects.get(id=orders_data['id'])
-            orders_serializer= OrderSerializer(orders,data=orders_data)
+        
+        orders = Order.objects.filter(id=orders_data['id']).first() # check if there is data db
+        
+        if orders==None:   # if the data is not in  the db: write data in db
+            orders_serializer= OrderSerializer(data=orders_data) 
             if orders_serializer.is_valid():
                 orders_serializer.save()
-        except:
-            orders_serializer= OrderSerializer(data=orders_data)
+        else:     # if the data is  in the db: Update it
+            orders_serializer= OrderSerializer(orders,data=orders_data)
             if orders_serializer.is_valid():
                 orders_serializer.save()
 
