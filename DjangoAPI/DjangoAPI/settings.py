@@ -95,7 +95,7 @@ DATABASES = {
         'HOST': env('HOST_DB'),
         'OPTIONS':{
             'driver' :'ODBC Driver 17 for SQL Server',
-            'isolation_level': 'READ UNCOMMITTED'
+            'isolation_level': 'READ UNCOMMITTED',
         }
     }
 }
